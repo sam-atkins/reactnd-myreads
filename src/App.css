@@ -172,3 +172,16 @@ body, .app {
   text-align: center;
   font-size: 0.8em;
 }
+
+
+/* footer */
+
+.footer-wrapper {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 50px;
+}
+
+.footer-text {
+  font-size: 0.8em;
+}
