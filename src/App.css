@@ -1,5 +1,6 @@
 html, body, .root {
   height: 100%;
+  position: relative;
 }
 body {
   line-height: 1.5;
@@ -8,8 +9,15 @@ body, .app {
   background: white;
 }
 
-/* main page */
+.app {
+  min-height: 100vh;
+  overflow: hidden;
+  display: block;
+  position: relative;
+  padding-bottom: 100px;
+}
 
+/* main page */
 .list-books-title {
   padding: 10px 0;
   background: #2e7c31;
@@ -173,13 +181,15 @@ body, .app {
   font-size: 0.8em;
 }
 
-
 /* footer */
 
 .footer-wrapper {
   display: flex;
   justify-content: center;
-  margin-bottom: 50px;
+  margin-bottom: 2vh;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
 }
 
 .footer-text {
