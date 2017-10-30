@@ -10,7 +10,9 @@ const BookShelf = props => (
         <h2 className="bookshelf-title">{shelf.shelfName}</h2>
         <div className="bookshelf-books">
           <ol className="books-grid">
-            <Book />
+            {props.books.map(b => (
+              <Book book={b} key={b.title}/>
+            ))}
           </ol>
         </div>
       </div>
@@ -25,6 +27,11 @@ const BookShelf = props => (
 
 BookShelf.propTypes = {
   shelves: PropTypes.array.isRequired,
+  books: PropTypes.array,
+};
+
+BookShelf.defaultProps = {
+  books: [],
 };
 
 export default BookShelf;
