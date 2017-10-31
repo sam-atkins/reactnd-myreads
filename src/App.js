@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Route } from 'react-router-dom';
+import styled from 'styled-components';
 // import * as BooksAPI from './utils/BooksAPI';
 import './App.css';
 import { Header, Footer } from './components/common';
@@ -92,8 +93,17 @@ class BooksApp extends Component {
   };
 
   render() {
+    const StyledApp = styled.div`
+      min-height: 100vh;
+      overflow: hidden;
+      display: block;
+      position: relative;
+      padding-bottom: 100px;
+      background: white;
+    `;
+
     return (
-      <div className="app">
+      <StyledApp>
         <Header />
         <Route
           exact
@@ -113,7 +123,7 @@ class BooksApp extends Component {
           )}
         />
         <Footer />
-      </div>
+      </StyledApp>
     );
   }
 }
