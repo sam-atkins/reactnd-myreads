@@ -10,17 +10,15 @@ const BookShelf = props => (
         <h2 className="bookshelf-title">{shelf.shelfName}</h2>
         <div className="bookshelf-books">
           <ol className="books-grid">
-            {props.books.map(b => (
-              <Book book={b} key={b.title}/>
-            ))}
+            {props.books
+              .filter(b => b.shelf === shelf.id)
+              .map(b => <Book book={b} key={b.title} />)}
           </ol>
         </div>
       </div>
     ))}
     <div className="open-search">
-      <Link to="/search">
-        Add a book
-      </Link>
+      <Link to="/search">Add a book</Link>
     </div>
   </div>
 );
