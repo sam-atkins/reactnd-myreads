@@ -92,6 +92,18 @@ class BooksApp extends Component {
     ],
   };
 
+  moveBook() {
+    console.log('====================================');
+    console.log('func moveBook called');
+    console.log('====================================');
+    // this.setState(state => ({
+    //   book: {
+    //     ...state,
+    //     shelf: value,
+    //   },
+    // }));
+  }
+
   render() {
     const StyledApp = styled.div`
       min-height: 100vh;
@@ -109,7 +121,13 @@ class BooksApp extends Component {
           exact
           path="/"
           render={() => (
-            <BookShelf shelves={this.state.shelves} books={this.state.books} />
+            <BookShelf
+              shelves={this.state.shelves}
+              books={this.state.books}
+              onMoveBook={(book, value) => {
+                this.moveBook(book, value);
+              }}
+            />
           )}
         />
         <Route

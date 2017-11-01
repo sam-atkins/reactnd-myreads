@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import Icon from '../icons/icons';
@@ -60,35 +60,44 @@ const StyledBookAuthors = StyledBookInfo.extend`
   color: #999;
 `;
 
-const Book = (props) => {
-  const { authors, backgroundImage, title } = props.book;
-  return (
-    <BooksGridLI>
-      <StyledBook>
-        <StyledBookTop>
-          <StyledBookCover
-            style={{
-              backgroundImage: `url(${backgroundImage})`,
-            }}
-          />
-          <StyledBookShelfChanger>
-            <StyledBookShelfChangerSelect>
-              <option value="none" disabled>
-                Move to...
-              </option>
-              <option value="currentlyReading">Currently Reading</option>
-              <option value="wantToRead">Want to Read</option>
-              <option value="read">Read</option>
-              <option value="none">None</option>
-            </StyledBookShelfChangerSelect>
-          </StyledBookShelfChanger>
-        </StyledBookTop>
-        <StyledBookTitle>{title}</StyledBookTitle>
-        <StyledBookAuthors>{authors}</StyledBookAuthors>
-      </StyledBook>
-    </BooksGridLI>
-  );
-};
+class Book extends Component {
+  handleMoveBook = (e) => {
+    console.log('====================================');
+    console.log('handleMoveBook called:', e);
+    console.log('====================================');
+  };
+
+  render() {
+    const { authors, backgroundImage, title } = this.props.book;
+    return (
+      <BooksGridLI>
+        <StyledBook>
+          <StyledBookTop>
+            <StyledBookCover
+              style={{
+                backgroundImage: `url(${backgroundImage})`,
+              }}
+            />
+            <StyledBookShelfChanger>
+              <StyledBookShelfChangerSelect
+                value={this.props.book.shelf}
+                onChange={this.handleMoveBook}
+              >
+                <option disabled>Move to...</option>
+                <option value="currentlyReading">Currently Reading</option>
+                <option value="wantToRead">Want to Read</option>
+                <option value="read">Read</option>
+                <option value="none">None</option>
+              </StyledBookShelfChangerSelect>
+            </StyledBookShelfChanger>
+          </StyledBookTop>
+          <StyledBookTitle>{title}</StyledBookTitle>
+          <StyledBookAuthors>{authors}</StyledBookAuthors>
+        </StyledBook>
+      </BooksGridLI>
+    );
+  }
+}
 
 Book.propTypes = {
   book: PropTypes.object,

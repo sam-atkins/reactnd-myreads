@@ -65,7 +65,9 @@ const BookShelf = props => (
           <BooksGridOL>
             {props.books
               .filter(b => b.shelf === shelf.id)
-              .map(b => <Book book={b} key={b.title} />)}
+              .map(b => (
+                <Book key={b.title} book={b} moveBook={props.moveBook} />
+              ))}
           </BooksGridOL>
         </BookShelfBooks>
       </StyledBookShelf>
