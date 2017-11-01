@@ -2,9 +2,11 @@
 
 exports[`Header renders correctly 1`] = `
 <div
-  className="list-books-title"
+  className="sc-bdVaJa cEXbJD"
 >
-  <h1>
+  <h1
+    className="sc-bwzfXH hYnKEf"
+  >
     MyReads
   </h1>
 </div>

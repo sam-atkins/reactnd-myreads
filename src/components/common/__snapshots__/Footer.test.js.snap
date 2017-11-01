@@ -1,11 +1,11 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Footer renders correctly 1`] = `
-<footer
-  className="footer-wrapper"
+<div
+  className="sc-bdVaJa hvMkhm"
 >
   <div
-    className="footer-text"
+    className="sc-bwzfXH hRFBVQ"
   >
     Built with ♥ by 
     <a
@@ -22,5 +22,5 @@ exports[`Footer renders correctly 1`] = `
     </a>
     .
   </div>
-</footer>
+</div>
 `;
