@@ -19,15 +19,12 @@ const StyledBookTop = styled.div`
   height: 200px;
 `;
 
-// TODO add props to apply background-image to StyledBookCover
-// `url(${book.backgroundImage})`;
 const StyledBookCover = styled.div`
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
   background: #eee;
   width: 128px;
   height: 193px;
 `;
-
 
 const StyledBookShelfChanger = styled.div`
   position: absolute;
@@ -64,14 +61,14 @@ const StyledBookAuthors = StyledBookInfo.extend`
 `;
 
 const Book = (props) => {
-  const { book } = props;
+  const { authors, backgroundImage, title } = props.book;
   return (
     <BooksGridLI>
       <StyledBook>
         <StyledBookTop>
           <StyledBookCover
             style={{
-              backgroundImage: `url(${book.backgroundImage})`,
+              backgroundImage: `url(${backgroundImage})`,
             }}
           />
           <StyledBookShelfChanger>
@@ -86,8 +83,8 @@ const Book = (props) => {
             </StyledBookShelfChangerSelect>
           </StyledBookShelfChanger>
         </StyledBookTop>
-        <StyledBookTitle>{book.title}</StyledBookTitle>
-        <StyledBookAuthors>{book.authors}</StyledBookAuthors>
+        <StyledBookTitle>{title}</StyledBookTitle>
+        <StyledBookAuthors>{authors}</StyledBookAuthors>
       </StyledBook>
     </BooksGridLI>
   );
