@@ -1,0 +1,64 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Book renders correctly 1`] = `
+<li
+  className="sc-bdVaJa kjQISI"
+>
+  <div
+    className="sc-bwzfXH cTLMOu"
+  >
+    <div
+      className="sc-htpNat fvAskg"
+    >
+      <div
+        className="sc-bxivhb hfteEK"
+        style={
+          Object {
+            "backgroundImage": "url(undefined)",
+          }
+        }
+      />
+      <div
+        className="sc-ifAKCX bJLWbW"
+      >
+        <select
+          className="sc-EHOje RUfBm"
+        >
+          <option
+            disabled={true}
+            value="none"
+          >
+            Move to...
+          </option>
+          <option
+            value="currentlyReading"
+          >
+            Currently Reading
+          </option>
+          <option
+            value="wantToRead"
+          >
+            Want to Read
+          </option>
+          <option
+            value="read"
+          >
+            Read
+          </option>
+          <option
+            value="none"
+          >
+            None
+          </option>
+        </select>
+      </div>
+    </div>
+    <div
+      className="sc-gzVnrw jhGaQF"
+    />
+    <div
+      className="sc-htoDjs cnGTWw"
+    />
+  </div>
+</li>
+`;
