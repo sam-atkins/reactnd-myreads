@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Route } from 'react-router-dom';
 import styled from 'styled-components';
 // import * as BooksAPI from './utils/BooksAPI';
-import './App.css';
+// import './App.css';
 import { Header, Footer } from './components/common';
 import { BookShelf, SearchPage } from './components';
 

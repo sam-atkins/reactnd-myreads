@@ -5,7 +5,14 @@ html {
   box-sizing: inherit;
 }
 body {
+  background: white;
+  font-family: 'Roboto', sans-serif;
+  line-height: 1.5;
   margin: 0;
   padding: 0;
-  font-family: 'Roboto', sans-serif;
+}
+
+html, body, .root {
+  height: 100%;
+  position: relative;
 }
