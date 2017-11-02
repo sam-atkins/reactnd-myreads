@@ -20,6 +20,7 @@ const StyledBookTop = styled.div`
 `;
 
 const StyledBookCover = styled.div`
+  /* background-image contained in style tag in the JSX */
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
   background: #eee;
   width: 128px;
@@ -62,9 +63,8 @@ const StyledBookAuthors = StyledBookInfo.extend`
 
 class Book extends Component {
   handleMoveBook = (e) => {
-    console.log('====================================');
-    console.log('handleMoveBook called:', e);
-    console.log('====================================');
+    const selectedBook = this.props.book;
+    this.props.onMoveBook(e, selectedBook);
   };
 
   render() {
@@ -101,6 +101,7 @@ class Book extends Component {
 
 Book.propTypes = {
   book: PropTypes.object,
+  onMoveBook: PropTypes.func.isRequired,
 };
 
 Book.defaultProps = {
