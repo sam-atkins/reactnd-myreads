@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
+import * as BooksAPI from '../utils/BooksAPI';
 import Icon from '../icons/icons';
 
 const BooksGridLI = styled.li`
@@ -64,18 +65,23 @@ const StyledBookAuthors = StyledBookInfo.extend`
 class Book extends Component {
   handleMoveBook = (e) => {
     const selectedBook = this.props.book;
-    this.props.onMoveBook(e, selectedBook);
-  };
+    const selectedShelf = e.target.value;
+    BooksAPI.update(selectedBook, selectedShelf).then((books) => {
+      console.log('====================================');
+      console.log('handleMovebook promise:', books);
+      console.log('====================================');
+    })
+  }
 
   render() {
-    const { authors, backgroundImage, title } = this.props.book;
+    const { authors, imageLinks, title } = this.props.book;
     return (
       <BooksGridLI>
         <StyledBook>
           <StyledBookTop>
             <StyledBookCover
               style={{
-                backgroundImage: `url(${backgroundImage})`,
+                backgroundImage: `url(${imageLinks.smallThumbnail})`,
               }}
             />
             <StyledBookShelfChanger>
@@ -101,7 +107,6 @@ class Book extends Component {
 
 Book.propTypes = {
   book: PropTypes.object,
-  onMoveBook: PropTypes.func.isRequired,
 };
 
 Book.defaultProps = {
