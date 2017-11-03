@@ -24,23 +24,12 @@ class BooksApp extends Component {
   };
 
   componentDidMount() {
-    this.updateBookShelves();
-  }
-
-  updateBookShelves = () => {
     BooksAPI.getAll().then((books) => {
       this.setState({ books });
-      console.log('====================================');
-      console.log(this.state);
-      console.log('====================================');
     });
-  };
+  }
 
   moveBook = (book, shelf) => {
-    console.log('====================================');
-    console.log('App onMoveBook:', book, shelf);
-    console.log('====================================');
-
     BooksAPI.update(book, shelf).then(() => {
       BooksAPI.getAll().then((books) => {
         this.setState({ books });
