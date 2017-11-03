@@ -22,7 +22,7 @@ const SearchBooksBarInput = styled.input`
   outline: none;
 `;
 
-const SearchBooksInputWrapper = styled.div`
+const SearchBooksInputWrapper = styled.form`
   flex: 1;
   background: #e9e;
 `;
@@ -62,10 +62,10 @@ const CloseSearchLink = styled(Link)`
 `;
 
 const SearchPage = (props) => {
-
-  const handleUserSearch = (value) => {
-    if (props.onAddBook) {
-      props.onAddBook(value);
+  const handleUserSearch = (e) => {
+    e.preventDefault();
+    if (props.onUserBookSearch) {
+      props.onUserBookSearch(e.target.value);
     }
   };
 
@@ -77,7 +77,7 @@ const SearchPage = (props) => {
             type="text"
             placeholder="Search by title or author"
             value={props.userSearch}
-            onChange={e => handleUserSearch(e.target.value)}
+            onChange={e => handleUserSearch(e)}
           />
         </SearchBooksInputWrapper>
       </SearchBooksBar>
@@ -93,7 +93,7 @@ const SearchPage = (props) => {
 
 SearchPage.propTypes = {
   userSearch: PropTypes.string,
-  onAddBook: PropTypes.func.isRequired,
+  onUserBookSearch: PropTypes.func.isRequired,
 };
 
 SearchPage.defaultProps = {

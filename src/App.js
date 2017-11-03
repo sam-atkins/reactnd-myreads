@@ -38,9 +38,10 @@ class BooksApp extends Component {
     });
   };
 
-  addBook = (book) => {
+  userBookSearch = (value) => {
+    this.setState({ userSearch: value });
     console.log('====================================');
-    console.log(book);
+    console.log(this.state.userSearch);
     console.log('====================================');
   };
 
@@ -75,8 +76,10 @@ class BooksApp extends Component {
           render={({ history }) => (
             <SearchPage
               userSearch={this.state.userSearch}
-              onAddBook={(book) => {
-                this.addBook(book);
+              onUserBookSearch={(value) => {
+                this.userBookSearch(value);
+              }}
+              onSelectSearchPage={() => {
                 history.push('/');
               }}
             />
