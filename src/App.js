@@ -21,6 +21,7 @@ class BooksApp extends Component {
         shelfName: 'Read',
       },
     ],
+    userSearch: '',
   };
 
   componentDidMount() {
@@ -35,6 +36,12 @@ class BooksApp extends Component {
         this.setState({ books });
       });
     });
+  };
+
+  addBook = (book) => {
+    console.log('====================================');
+    console.log(book);
+    console.log('====================================');
   };
 
   render() {
@@ -67,7 +74,9 @@ class BooksApp extends Component {
           path="/search"
           render={({ history }) => (
             <SearchPage
-              onAddBook={() => {
+              userSearch={this.state.userSearch}
+              onAddBook={(book) => {
+                this.addBook(book);
                 history.push('/');
               }}
             />

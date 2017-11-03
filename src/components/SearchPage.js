@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import Icon from '../icons/icons';
 
 const SearchBooksBar = styled.div`
@@ -60,23 +61,43 @@ const CloseSearchLink = styled(Link)`
   font-size: 0;
 `;
 
-const SearchPage = () => (
-  <div className="search-books">
-    <SearchBooksBar>
-      <SearchBooksInputWrapper>
-        <SearchBooksBarInput
-          type="text"
-          placeholder="Search by title or author"
-        />
-      </SearchBooksInputWrapper>
-    </SearchBooksBar>
-    <SearchBooksResults>
-      <BooksGridOL />
-    </SearchBooksResults>
-    <CloseSearch>
-      <CloseSearchLink to="/">Go back</CloseSearchLink>
-    </CloseSearch>
-  </div>
-);
+const SearchPage = (props) => {
+
+  const handleUserSearch = (value) => {
+    if (props.onAddBook) {
+      props.onAddBook(value);
+    }
+  };
+
+  return (
+    <div className="search-books">
+      <SearchBooksBar>
+        <SearchBooksInputWrapper>
+          <SearchBooksBarInput
+            type="text"
+            placeholder="Search by title or author"
+            value={props.userSearch}
+            onChange={e => handleUserSearch(e.target.value)}
+          />
+        </SearchBooksInputWrapper>
+      </SearchBooksBar>
+      <SearchBooksResults>
+        <BooksGridOL />
+      </SearchBooksResults>
+      <CloseSearch>
+        <CloseSearchLink to="/">Go back</CloseSearchLink>
+      </CloseSearch>
+    </div>
+  );
+};
+
+SearchPage.propTypes = {
+  userSearch: PropTypes.string,
+  onAddBook: PropTypes.func.isRequired,
+};
+
+SearchPage.defaultProps = {
+  userSearch: '',
+};
 
 export default SearchPage;
