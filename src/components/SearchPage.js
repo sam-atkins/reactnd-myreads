@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
-// import Icon from '../icons/icons';
+import { Link } from 'react-router-dom';
+import Icon from '../icons/icons';
 
 const SearchBooksBar = styled.div`
   position: fixed;
@@ -39,19 +40,25 @@ const BooksGridOL = styled.ol`
   flex-wrap: wrap;
 `;
 
-// const CloseSearch = styled.div`
-//   display: block;
-//   top: 20px;
-//   left: 15px;
-//   width: 50px;
-//   height: 53px;
-//   background: white;
-//   background-image: url(${Icon.arrowBackIcon});
-//   background-position: center;
-//   background-repeat: no-repeat;
-//   background-size: 28px;
-//   font-size: 0;
-// `;
+const CloseSearch = styled.div`
+  position: fixed;
+  right: 25px;
+  bottom: 25px;
+`;
+
+const CloseSearchLink = styled(Link)`
+  display: block;
+  top: 20px;
+  left: 15px;
+  width: 50px;
+  height: 53px;
+  background: white;
+  background-image: url(${Icon.arrowBackIcon});
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 28px;
+  font-size: 0;
+`;
 
 const SearchPage = () => (
   <div className="search-books">
@@ -66,6 +73,9 @@ const SearchPage = () => (
     <SearchBooksResults>
       <BooksGridOL />
     </SearchBooksResults>
+    <CloseSearch>
+      <CloseSearchLink to="/">Go back</CloseSearchLink>
+    </CloseSearch>
   </div>
 );
 
