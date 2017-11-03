@@ -66,6 +66,7 @@ const Book = (props) => {
     authors, imageLinks, title,
   } = props.book;
   const { onMoveBook } = props;
+  const formattedAuthorStr = authors.join(', ');
 
   const handleMoveBook = (e) => {
     const selectedBook = props.book;
@@ -95,7 +96,7 @@ const Book = (props) => {
           </StyledBookShelfChanger>
         </StyledBookTop>
         <StyledBookTitle>{title}</StyledBookTitle>
-        <StyledBookAuthors>{authors}</StyledBookAuthors>
+        <StyledBookAuthors>{formattedAuthorStr}</StyledBookAuthors>
       </StyledBook>
     </BooksGridLI>
   );
