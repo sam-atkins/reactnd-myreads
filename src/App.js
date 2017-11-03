@@ -21,7 +21,6 @@ class BooksApp extends Component {
         shelfName: 'Read',
       },
     ],
-    userSearch: '',
   };
 
   componentDidMount() {
@@ -36,13 +35,6 @@ class BooksApp extends Component {
         this.setState({ books });
       });
     });
-  };
-
-  userBookSearch = (value) => {
-    this.setState({ userSearch: value });
-    console.log('====================================');
-    console.log(this.state.userSearch);
-    console.log('====================================');
   };
 
   render() {
@@ -75,10 +67,6 @@ class BooksApp extends Component {
           path="/search"
           render={({ history }) => (
             <SearchPage
-              userSearch={this.state.userSearch}
-              onUserBookSearch={(value) => {
-                this.userBookSearch(value);
-              }}
               onSelectSearchPage={() => {
                 history.push('/');
               }}

@@ -1,7 +1,6 @@
-import React from 'react';
+import React, { Component } from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
-import PropTypes from 'prop-types';
 import Icon from '../icons/icons';
 
 const SearchBooksBar = styled.div`
@@ -22,7 +21,7 @@ const SearchBooksBarInput = styled.input`
   outline: none;
 `;
 
-const SearchBooksInputWrapper = styled.form`
+const SearchBooksInputForm = styled.form`
   flex: 1;
   background: #e9e;
 `;
@@ -61,43 +60,42 @@ const CloseSearchLink = styled(Link)`
   font-size: 0;
 `;
 
-const SearchPage = (props) => {
-  const handleUserSearch = (e) => {
-    e.preventDefault();
-    if (props.onUserBookSearch) {
-      props.onUserBookSearch(e.target.value);
-    }
+class SearchPage extends Component {
+  state = {
+    userSearch: '',
   };
 
-  return (
-    <div className="search-books">
-      <SearchBooksBar>
-        <SearchBooksInputWrapper>
-          <SearchBooksBarInput
-            type="text"
-            placeholder="Search by title or author"
-            value={props.userSearch}
-            onChange={e => handleUserSearch(e)}
-          />
-        </SearchBooksInputWrapper>
-      </SearchBooksBar>
-      <SearchBooksResults>
-        <BooksGridOL />
-      </SearchBooksResults>
-      <CloseSearch>
-        <CloseSearchLink to="/">Go back</CloseSearchLink>
-      </CloseSearch>
-    </div>
-  );
-};
+  handleUserSearch = (e) => {
+    e.preventDefault();
+    const userSearch = e.target.value;
+    this.setState({ userSearch });
+    console.log('====================================');
+    console.log(this.state.userSearch);
+    console.log('====================================');
+  };
 
-SearchPage.propTypes = {
-  userSearch: PropTypes.string,
-  onUserBookSearch: PropTypes.func.isRequired,
-};
-
-SearchPage.defaultProps = {
-  userSearch: '',
-};
+  render() {
+    return (
+      <div className="search-books">
+        <SearchBooksBar>
+          <SearchBooksInputForm>
+            <SearchBooksBarInput
+              type="text"
+              placeholder="Search by title or author"
+              value={this.state.userSearch}
+              onChange={e => this.handleUserSearch(e)}
+            />
+          </SearchBooksInputForm>
+        </SearchBooksBar>
+        <SearchBooksResults>
+          <BooksGridOL />
+        </SearchBooksResults>
+        <CloseSearch>
+          <CloseSearchLink to="/">Go back</CloseSearchLink>
+        </CloseSearch>
+      </div>
+    );
+  }
+}
 
 export default SearchPage;
