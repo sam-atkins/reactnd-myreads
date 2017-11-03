@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { Route } from 'react-router-dom';
 import styled from 'styled-components';
 import * as BooksAPI from './utils/BooksAPI';
-// import './App.css';
 import { Header, Footer } from './components/common';
 import { BookShelf, SearchPage } from './components';
 
@@ -25,13 +24,29 @@ class BooksApp extends Component {
   };
 
   componentDidMount() {
+    this.updateBookShelves();
+  }
+
+  updateBookShelves = () => {
     BooksAPI.getAll().then((books) => {
       this.setState({ books });
       console.log('====================================');
       console.log(this.state);
       console.log('====================================');
     });
-  }
+  };
+
+  moveBook = (book, shelf) => {
+    console.log('====================================');
+    console.log('App onMoveBook:', book, shelf);
+    console.log('====================================');
+
+    BooksAPI.update(book, shelf).then(() => {
+      BooksAPI.getAll().then((books) => {
+        this.setState({ books });
+      });
+    });
+  };
 
   render() {
     const StyledApp = styled.div`
@@ -53,6 +68,9 @@ class BooksApp extends Component {
             <BookShelf
               shelves={this.state.shelves}
               books={this.state.books}
+              onMoveBook={(shelf, book) => {
+                this.moveBook(shelf, book);
+              }}
             />
           )}
         />

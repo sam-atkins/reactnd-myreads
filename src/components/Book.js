@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
-import * as BooksAPI from '../utils/BooksAPI';
 import Icon from '../icons/icons';
 
 const BooksGridLI = styled.li`
@@ -62,16 +61,13 @@ const StyledBookAuthors = StyledBookInfo.extend`
   color: #999;
 `;
 
+// TODO convert to functional component
 class Book extends Component {
   handleMoveBook = (e) => {
     const selectedBook = this.props.book;
     const selectedShelf = e.target.value;
-    BooksAPI.update(selectedBook, selectedShelf).then((books) => {
-      console.log('====================================');
-      console.log('handleMovebook promise:', books);
-      console.log('====================================');
-    })
-  }
+    this.props.onMoveBook(selectedBook, selectedShelf);
+  };
 
   render() {
     const { authors, imageLinks, title } = this.props.book;
@@ -107,6 +103,7 @@ class Book extends Component {
 
 Book.propTypes = {
   book: PropTypes.object,
+  onMoveBook: PropTypes.func.isRequired,
 };
 
 Book.defaultProps = {
