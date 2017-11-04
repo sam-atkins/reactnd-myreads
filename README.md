@@ -60,7 +60,7 @@ To simplify your development process, we've provided a backend server for you to
 * [`update`](#update)
 * [`search`](#search)
 
-### `getAll`
+#### `getAll`
 
 Method Signature:
 
@@ -71,7 +71,7 @@ getAll()
 * Returns a Promise which resolves to a JSON object containing a collection of book objects.
 * This collection represents the books currently in the bookshelves in your app.
 
-### `update`
+#### `update`
 
 Method Signature:
 
@@ -83,7 +83,7 @@ update(book, shelf)
 * shelf: `<String>` contains one of ["wantToRead", "currentlyReading", "read"]
 * Returns a Promise which resolves to a JSON object containing the response data of the POST request
 
-### `search`
+#### `search`
 
 Method Signature:
 
@@ -96,14 +96,12 @@ search(query, maxResults)
 * Returns a Promise which resolves to a JSON object containing a collection of book objects.
 * These books do not know which shelf they are on. They are raw results only. You'll need to make sure that books have the correct state while on the search page.
 
-## Important
+#### Search Terms
 The backend API uses a fixed set of cached search results and is limited to a particular set of search terms (see Search Terms below). That list of terms are the _only_ terms that will work with the backend, so don't be surprised if your searches for Basket Weaving or Bubble Wrap don't come back with any results.
-
-### Search Terms
 
 'Android', 'Art', 'Artificial Intelligence', 'Astronomy', 'Austen', 'Baseball', 'Basketball', 'Bhagat', 'Biography', 'Brief', 'Business', 'Camus', 'Cervantes', 'Christie', 'Classics', 'Comics', 'Cook', 'Cricket', 'Cycling', 'Desai', 'Design', 'Development', 'Digital Marketing', 'Drama', 'Drawing', 'Dumas', 'Education', 'Everything', 'Fantasy', 'Film', 'Finance', 'First', 'Fitness', 'Football', 'Future', 'Games', 'Gandhi', 'Homer', 'Horror', 'Hugo', 'Ibsen', 'Journey', 'Kafka', 'King', 'Lahiri', 'Larsson', 'Learn', 'Literary Fiction', 'Make', 'Manage', 'Marquez', 'Money', 'Mystery', 'Negotiate', 'Painting', 'Philosophy', 'Photography', 'Poetry', 'Production', 'Programming', 'React', 'Redux', 'River', 'Robotics', 'Rowling', 'Satire', 'Science Fiction', 'Shakespeare', 'Singh', 'Swimming', 'Tale', 'Thrun', 'Time', 'Tolstoy', 'Travel', 'Ultimate', 'Virtual Reality', 'Web Development', 'iOS'
 
-## Tests
+### Tests
 
 [Jest](https://facebook.github.io/jest/) is used for tests. To run the test suite, use this command:
 
@@ -111,7 +109,7 @@ The backend API uses a fixed set of cached search results and is limited to a pa
 yarn test
 ```
 
-## Style Guide
+### Style Guide
 This repo uses [ESLint](https://eslint.org/) with [Prettier](https://github.com/prettier/prettier) formatting.
 
 The ESLint config extends from AirBnB, with a few changes. Refer to the `.eslintrc.yml` file in the root of the repo for info on the changes.
