@@ -1,19 +1,58 @@
+# React Project: MyReads
+
 [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg)](https://github.com/prettier/prettier)
 [![tested with jest](https://img.shields.io/badge/tested_with-jest-99424f.svg)](https://github.com/facebook/jest)
 
-# Project: MyReads
-This is my project for the React Nanodegree.
+## Description
+This is the first project for the [React Nanodegree](https://www.udacity.com/course/react-nanodegree--nd019).
 
-TODO - add more info.
+## Table of Contents
+
+- [Getting started](#getting-started)
+  - [Installation](#installation)
+- [Develop](#develop)
+  - [How to run](#how-to-run)
+  - [Backend Server API](#backend-server-api)
+  - [Tests](#tests)
+  - [Style Guide](#style-guide)
+- [Release](#release)
+
 
 ## Getting started
 
+### Installation
+
+This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
+
+**Dependencies:**
+
+* Yarn package manager
+* `create-react-app`
+* Editor / IDE
+
+To get started with this repository:
+
+* Git clone the repository
 * Install the dependencies: `yarn`
 * Start the development server: `yarn start`
-* Lint the project: `yarn lint`
-* Run the tests: `yarn test`
 
-## Backend Server
+## Develop
+
+### How to run
+
+```sh
+# Navigate into your local project directory
+cd <projects>/myreads
+
+# To run the development server
+yarn start
+```
+
+If there appears to be issues with dependencies not being installed, or up to date, then run `yarn`.
+
+### Backend Server API
+
+**Instructions from Udacity on how to use the API:**
 
 To simplify your development process, we've provided a backend server for you to develop against. The provided file [`BooksAPI.js`](src/BooksAPI.js) contains the methods you will need to perform necessary operations on the backend:
 
@@ -62,11 +101,21 @@ The backend API uses a fixed set of cached search results and is limited to a pa
 
 ### Search Terms
 
-```
 'Android', 'Art', 'Artificial Intelligence', 'Astronomy', 'Austen', 'Baseball', 'Basketball', 'Bhagat', 'Biography', 'Brief', 'Business', 'Camus', 'Cervantes', 'Christie', 'Classics', 'Comics', 'Cook', 'Cricket', 'Cycling', 'Desai', 'Design', 'Development', 'Digital Marketing', 'Drama', 'Drawing', 'Dumas', 'Education', 'Everything', 'Fantasy', 'Film', 'Finance', 'First', 'Fitness', 'Football', 'Future', 'Games', 'Gandhi', 'Homer', 'Horror', 'Hugo', 'Ibsen', 'Journey', 'Kafka', 'King', 'Lahiri', 'Larsson', 'Learn', 'Literary Fiction', 'Make', 'Manage', 'Marquez', 'Money', 'Mystery', 'Negotiate', 'Painting', 'Philosophy', 'Photography', 'Poetry', 'Production', 'Programming', 'React', 'Redux', 'River', 'Robotics', 'Rowling', 'Satire', 'Science Fiction', 'Shakespeare', 'Singh', 'Swimming', 'Tale', 'Thrun', 'Time', 'Tolstoy', 'Travel', 'Ultimate', 'Virtual Reality', 'Web Development', 'iOS'
+
+## Tests
+
+[Jest](https://facebook.github.io/jest/) is used for tests. To run the test suite, use this command:
+
+```sh
+yarn test
 ```
 
-## create-react-app
-This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
+## Style Guide
+This repo uses [ESLint](https://eslint.org/) with [Prettier](https://github.com/prettier/prettier) formatting.
 
-Check the project wiki `create-react-app` [page](https://github.com/cubiio/reactnd-myreads/wiki/Create-React-App-README) for more info.
+The ESLint config extends from AirBnB, with a few changes. Refer to the `.eslintrc.yml` file in the root of the repo for info on the changes.
+
+## Release
+
+This section will contain info on the final version.
