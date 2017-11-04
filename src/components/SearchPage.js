@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import Icon from '../icons/icons';
+import * as BooksAPI from '../utils/BooksAPI';
 
 const SearchBooksBar = styled.div`
   position: fixed;
@@ -63,22 +64,29 @@ const CloseSearchLink = styled(Link)`
 class SearchPage extends Component {
   state = {
     userSearch: '',
+    searchResults: {},
   };
 
   handleUserSearch = (e) => {
-    e.preventDefault();
     const userSearch = e.target.value;
     this.setState({ userSearch });
+  };
+
+  handleFormSubmit = (e) => {
+    e.preventDefault();
+    BooksAPI.search(this.state.userSearch).then((searchResults) => {
+      this.setState({ searchResults });
     console.log('====================================');
-    console.log(this.state.userSearch);
+    console.log(this.state);
     console.log('====================================');
+    });
   };
 
   render() {
     return (
       <div className="search-books">
         <SearchBooksBar>
-          <SearchBooksInputForm>
+          <SearchBooksInputForm onSubmit={this.handleFormSubmit}>
             <SearchBooksBarInput
               type="text"
               placeholder="Search by title or author"
