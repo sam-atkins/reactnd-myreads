@@ -32,16 +32,27 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 To get started with this repository:
 
-* Git clone the repository
-* Install the dependencies: `yarn`
-* Start the development server: `yarn start`
+```sh
+# git clone the repository e.g. into a <projects> folder
+cd <projects>
+# git clone with ssh
+git clone git@github.com:cubiio/reactnd-myreads.git
+# or git clone with HTTPS
+git clone https://github.com/cubiio/reactnd-myreads.git
+
+# change directory into the cloned repo
+cd myreads
+
+# install the dependencies
+yarn
+```
 
 ## Develop
 
 ### How to run
 
 ```sh
-# Navigate into your local project directory
+# Navigate into your local myreads project directory
 cd <projects>/myreads
 
 # To run the development server
