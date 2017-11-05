@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import Icon from '../icons/icons';
 import Book from './Book';
 import * as BooksAPI from '../utils/BooksAPI';
@@ -86,10 +87,6 @@ class SearchPage extends Component {
     });
   };
 
-  addBook = (book, shelf) => {
-    BooksAPI.update(book, shelf);
-  };
-
   render() {
     return (
       <div className="search-books">
@@ -107,7 +104,11 @@ class SearchPage extends Component {
           <BooksGridOL>
             {this.state.searchResults.length > 0 &&
               this.state.searchResults.map(b => (
-                <Book key={b.title} book={b} onMoveBook={this.addBook} />
+                <Book
+                  key={b.id}
+                  book={b}
+                  onUpdateBook={this.props.onUpdateBook}
+                />
               ))}
           </BooksGridOL>
         </SearchBooksResults>
@@ -118,5 +119,9 @@ class SearchPage extends Component {
     );
   }
 }
+
+SearchPage.propTypes = {
+  onUpdateBook: PropTypes.func.isRequired,
+};
 
 export default SearchPage;

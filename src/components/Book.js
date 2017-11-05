@@ -62,16 +62,13 @@ const StyledBookAuthors = StyledBookInfo.extend`
 `;
 
 const Book = (props) => {
-  const {
-    authors, imageLinks, title,
-  } = props.book;
-  const { onMoveBook } = props;
-  const formattedAuthorStr = authors.join(', ');
+  const { authors, imageLinks, title } = props.book;
+  const { onUpdateBook } = props;
 
   const handleMoveBook = (e) => {
     const selectedBook = props.book;
     const selectedShelf = e.target.value;
-    onMoveBook(selectedBook, selectedShelf);
+    onUpdateBook(selectedBook, selectedShelf);
   };
   return (
     <BooksGridLI>
@@ -84,7 +81,7 @@ const Book = (props) => {
           />
           <StyledBookShelfChanger>
             <StyledBookShelfChangerSelect
-              value={props.book.shelf}
+              value={props.book.shelf || 'none'}
               onChange={handleMoveBook}
             >
               <option disabled>Move to...</option>
@@ -96,15 +93,18 @@ const Book = (props) => {
           </StyledBookShelfChanger>
         </StyledBookTop>
         <StyledBookTitle>{title}</StyledBookTitle>
-        <StyledBookAuthors>{formattedAuthorStr}</StyledBookAuthors>
+        <StyledBookAuthors>{authors}</StyledBookAuthors>
       </StyledBook>
     </BooksGridLI>
   );
 };
 
+// TODO add to <StyledBookAuthors>
+// authors.length >= 2 ? authors.join(', ') : authors;
+
 Book.propTypes = {
   book: PropTypes.object,
-  onMoveBook: PropTypes.func.isRequired,
+  onUpdateBook: PropTypes.func.isRequired,
 };
 
 Book.defaultProps = {

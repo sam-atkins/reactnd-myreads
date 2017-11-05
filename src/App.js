@@ -29,7 +29,7 @@ class BooksApp extends Component {
     });
   }
 
-  moveBook = (book, shelf) => {
+  updateBook = (book, shelf) => {
     BooksAPI.update(book, shelf).then(() => {
       BooksAPI.getAll().then((books) => {
         this.setState({ books });
@@ -57,8 +57,8 @@ class BooksApp extends Component {
             <BookShelf
               shelves={this.state.shelves}
               books={this.state.books}
-              onMoveBook={(shelf, book) => {
-                this.moveBook(shelf, book);
+              onUpdateBook={(shelf, book) => {
+                this.updateBook(shelf, book);
               }}
             />
           )}
@@ -67,6 +67,11 @@ class BooksApp extends Component {
           path="/search"
           render={({ history }) => (
             <SearchPage
+              shelves={this.state.shelves}
+              books={this.state.books}
+              onUpdateBook={(shelf, book) => {
+                this.updateBook(shelf, book);
+              }}
               onSelectSearchPage={() => {
                 history.push('/');
               }}
