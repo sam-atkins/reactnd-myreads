@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import Icon from '../icons/icons';
+import Book from './Book';
 import * as BooksAPI from '../utils/BooksAPI';
 
 const SearchBooksBar = styled.div`
@@ -64,22 +65,29 @@ const CloseSearchLink = styled(Link)`
 class SearchPage extends Component {
   state = {
     userSearch: '',
-    searchResults: {},
+    searchResults: [],
   };
 
   handleUserSearch = (e) => {
     const userSearch = e.target.value;
     this.setState({ userSearch });
+    console.log('====================================');
+    console.log('userSearch:', userSearch);
+    console.log('====================================');
   };
 
   handleFormSubmit = (e) => {
     e.preventDefault();
     BooksAPI.search(this.state.userSearch).then((searchResults) => {
       this.setState({ searchResults });
-    console.log('====================================');
-    console.log(this.state);
-    console.log('====================================');
+      console.log('====================================');
+      console.log(this.state.searchResults);
+      console.log('====================================');
     });
+  };
+
+  addBook = (book, shelf) => {
+    BooksAPI.update(book, shelf);
   };
 
   render() {
@@ -91,12 +99,17 @@ class SearchPage extends Component {
               type="text"
               placeholder="Search by title or author"
               value={this.state.userSearch}
-              onChange={e => this.handleUserSearch(e)}
+              onChange={this.handleUserSearch}
             />
           </SearchBooksInputForm>
         </SearchBooksBar>
         <SearchBooksResults>
-          <BooksGridOL />
+          <BooksGridOL>
+            {this.state.searchResults.length > 0 &&
+              this.state.searchResults.map(b => (
+                <Book key={b.title} book={b} onMoveBook={this.addBook} />
+              ))}
+          </BooksGridOL>
         </SearchBooksResults>
         <CloseSearch>
           <CloseSearchLink to="/">Go back</CloseSearchLink>
