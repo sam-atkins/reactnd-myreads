@@ -62,7 +62,9 @@ const StyledBookAuthors = StyledBookInfo.extend`
 `;
 
 const Book = (props) => {
-  const { authors, imageLinks, title } = props.book;
+  const {
+    authors, imageLinks, shelf, title,
+  } = props.book;
   const { onUpdateBook } = props;
 
   const handleMoveBook = (e) => {
@@ -81,7 +83,7 @@ const Book = (props) => {
           />
           <StyledBookShelfChanger>
             <StyledBookShelfChangerSelect
-              value={props.book.shelf || 'none'}
+              value={shelf}
               onChange={handleMoveBook}
             >
               <option disabled>Move to...</option>
