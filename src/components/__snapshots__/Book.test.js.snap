@@ -11,10 +11,10 @@ exports[`Book renders correctly 1`] = `
       className="sc-htpNat fvAskg"
     >
       <div
-        className="sc-bxivhb hfteEK"
+        className="sc-bxivhb jVTYef"
         style={
           Object {
-            "backgroundImage": "url(undefined)",
+            "backgroundImage": "url(someUrl)",
           }
         }
       />
@@ -23,10 +23,11 @@ exports[`Book renders correctly 1`] = `
       >
         <select
           className="sc-EHOje RUfBm"
+          onChange={[Function]}
+          value="wantToRead"
         >
           <option
             disabled={true}
-            value="none"
           >
             Move to...
           </option>
@@ -55,10 +56,14 @@ exports[`Book renders correctly 1`] = `
     </div>
     <div
       className="sc-gzVnrw jhGaQF"
-    />
+    >
+      A Book
+    </div>
     <div
       className="sc-htoDjs cnGTWw"
-    />
+    >
+      Author A
+    </div>
   </div>
 </li>
 `;
