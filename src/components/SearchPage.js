@@ -65,53 +65,91 @@ const CloseSearchLink = styled(Link)`
 
 class SearchPage extends Component {
   state = {
+    error: false,
     userSearch: '',
     searchResults: [],
   };
 
   handleUserSearch = (e) => {
     const userSearch = e.target.value;
-    this.setState({ userSearch });
-    // console.log('====================================');
-    // console.log('userSearch:', userSearch);
-    // console.log('====================================');
+    if (userSearch === '' || userSearch === undefined) {
+      this.setState({ userSearch: '' });
+    } else {
+      this.setState({ userSearch });
+      console.log('====================================');
+      console.log('userSearch:', userSearch);
+      console.log('====================================');
+      BooksAPI.search(this.state.userSearch)
+        .then((searchResults) => {
+          this.assignBookShelf(searchResults);
+          this.setState({
+            searchResults,
+            error: false,
+            // userSearch: '',
+          });
+        })
+        .catch((err) => {
+          this.setState({
+            error: true,
+            searchResults: [],
+            userSearch: '',
+          });
+        });
+    }
   };
 
   assignBookShelf = (searchResults) => {
-    for (const book of this.props.books) {
-      for (const result of searchResults) {
-        if (book.id === result.id) {
-          result.shelf = book.shelf;
-        } else {
-          result.shelf = 'none';
+    if (searchResults.error !== 'error') {
+      for (const book of this.props.books) {
+        for (const result of searchResults) {
+          if (book.id === result.id) {
+            result.shelf = book.shelf;
+          } else {
+            result.shelf = 'none';
+          }
         }
       }
     }
   };
 
-  handleFormSubmit = (e) => {
-    e.preventDefault();
-    BooksAPI.search(this.state.userSearch).then((searchResults) => {
-      this.assignBookShelf(searchResults);
-      this.setState({ searchResults });
-    });
-  };
+  // handleFormSubmit = (e) => {
+  //   e.preventDefault();
+  //   BooksAPI.search(this.state.userSearch).then((searchResults) => {
+  //     if (searchResults.error) {
+  //       this.setState({
+  //         error: true,
+  //         searchResults: [],
+  //       });
+  //     } else {
+  //       this.assignBookShelf(searchResults);
+  //       this.setState({
+  //         searchResults,
+  //         error: false,
+  //       });
+  //       console.log('====================================');
+  //       console.log('searchResults:', searchResults);
+  //       console.log('====================================');
+  //     }
+  //   });
+  // };
 
   render() {
     return (
       <div className="search-books">
         <SearchBooksBar>
-          <SearchBooksInputForm onSubmit={this.handleFormSubmit}>
+          {/* <SearchBooksInputForm onSubmit={this.handleFormSubmit}> */}
+          <SearchBooksInputForm>
             <SearchBooksBarInput
               type="text"
               placeholder="Search by title or author"
               value={this.state.userSearch}
-              onChange={this.handleUserSearch}
+              onChange={e => this.handleUserSearch(e)}
             />
           </SearchBooksInputForm>
         </SearchBooksBar>
         <SearchBooksResults>
           <BooksGridOL>
+            {this.state.error && <div>Your search returned no results</div>}
             {this.state.searchResults.length > 0 &&
               this.state.searchResults
                 .filter(b => b.shelf === 'none')
