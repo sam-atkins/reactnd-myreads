@@ -72,6 +72,14 @@ const Book = (props) => {
     const selectedShelf = e.target.value;
     onUpdateBook(selectedBook, selectedShelf);
   };
+
+  const formattedAuthorStr = (writers) => {
+    if (writers === undefined) {
+      return writers;
+    }
+    return writers.length >= 2 ? writers.join(', ') : writers;
+  };
+
   return (
     <BooksGridLI>
       <StyledBook>
@@ -95,14 +103,13 @@ const Book = (props) => {
           </StyledBookShelfChanger>
         </StyledBookTop>
         <StyledBookTitle>{title}</StyledBookTitle>
-        <StyledBookAuthors>{authors}</StyledBookAuthors>
+        <StyledBookAuthors>
+          {formattedAuthorStr(authors)}
+        </StyledBookAuthors>
       </StyledBook>
     </BooksGridLI>
   );
 };
-
-// TODO add to <StyledBookAuthors>
-// authors.length >= 2 ? authors.join(', ') : authors;
 
 Book.propTypes = {
   book: PropTypes.object,
