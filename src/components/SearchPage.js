@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
+import { DebounceInput } from 'react-debounce-input';
 import PropTypes from 'prop-types';
 import Icon from '../icons/icons';
 import Book from './Book';
@@ -16,7 +17,7 @@ const SearchBooksBar = styled.div`
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 0 6px rgba(0, 0, 0, 0.23);
 `;
 
-const SearchBooksBarInput = styled.input`
+const SearchBooksBarInput = styled(DebounceInput)`
   width: 100%;
   padding: 15px 10px;
   font-size: 1.25em;
@@ -76,9 +77,6 @@ class SearchPage extends Component {
       this.setState({ userSearch: '' });
     } else {
       this.setState({ userSearch });
-      console.log('====================================');
-      console.log('userSearch:', userSearch);
-      console.log('====================================');
       BooksAPI.search(this.state.userSearch)
         .then((searchResults) => {
           this.assignBookShelf(searchResults);
@@ -92,7 +90,7 @@ class SearchPage extends Component {
           this.setState({
             error: true,
             searchResults: [],
-            userSearch: '',
+            // userSearch: '',
           });
         });
     }
@@ -112,38 +110,17 @@ class SearchPage extends Component {
     }
   };
 
-  // handleFormSubmit = (e) => {
-  //   e.preventDefault();
-  //   BooksAPI.search(this.state.userSearch).then((searchResults) => {
-  //     if (searchResults.error) {
-  //       this.setState({
-  //         error: true,
-  //         searchResults: [],
-  //       });
-  //     } else {
-  //       this.assignBookShelf(searchResults);
-  //       this.setState({
-  //         searchResults,
-  //         error: false,
-  //       });
-  //       console.log('====================================');
-  //       console.log('searchResults:', searchResults);
-  //       console.log('====================================');
-  //     }
-  //   });
-  // };
-
   render() {
     return (
       <div className="search-books">
         <SearchBooksBar>
-          {/* <SearchBooksInputForm onSubmit={this.handleFormSubmit}> */}
           <SearchBooksInputForm>
             <SearchBooksBarInput
-              type="text"
+              minLength={2}
+              debounceTimeout={300}
+              onChange={e => this.handleUserSearch(e)}
               placeholder="Search by title or author"
               value={this.state.userSearch}
-              onChange={e => this.handleUserSearch(e)}
             />
           </SearchBooksInputForm>
         </SearchBooksBar>
