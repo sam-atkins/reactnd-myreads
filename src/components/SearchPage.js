@@ -99,10 +99,9 @@ class SearchPage extends Component {
       for (const book of this.props.books) {
         for (const result of results) {
           if (book.id === result.id) {
-            return result.shelf = book.shelf;
-          } else {
-            return result.shelf = 'none';
+            return (result.shelf = book.shelf);
           }
+          return (result.shelf = 'none');
         }
       }
     }
@@ -124,7 +123,31 @@ class SearchPage extends Component {
         </SearchBooksBar>
         <SearchBooksResults>
           <BooksGridOL>
-            {this.state.error && <div>Your search returned no results</div>}
+            {this.state.error && (
+              <div>
+                Your search returned no results. This demo app has limited
+                search. Try one of these search terms instead:
+                <br />
+                <p>
+                'Android',
+                'Art', 'Artificial Intelligence', 'Astronomy', 'Austen',
+                'Baseball', 'Basketball', 'Bhagat', 'Biography', 'Brief',
+                'Business', 'Camus', 'Cervantes', 'Christie', 'Classics',
+                'Comics', 'Cook', 'Cricket', 'Cycling', 'Desai', 'Design',
+                'Development', 'Digital Marketing', 'Drama', 'Drawing', 'Dumas',
+                'Education', 'Everything', 'Fantasy', 'Film', 'Finance',
+                'First', 'Fitness', 'Football', 'Future', 'Games', 'Gandhi',
+                'Homer', 'Horror', 'Hugo', 'Ibsen', 'Journey', 'Kafka', 'King',
+                'Lahiri', 'Larsson', 'Learn', 'Literary Fiction', 'Make',
+                'Manage', 'Marquez', 'Money', 'Mystery', 'Negotiate',
+                'Painting', 'Philosophy', 'Photography', 'Poetry', 'Production',
+                'Programming', 'React', 'Redux', 'River', 'Robotics', 'Rowling',
+                'Satire', 'Science Fiction', 'Shakespeare', 'Singh', 'Swimming',
+                'Tale', 'Thrun', 'Time', 'Tolstoy', 'Travel', 'Ultimate',
+                'Virtual Reality', 'Web Development', 'iOS'
+                </p>
+              </div>
+            )}
             {this.state.searchResults.length > 0 &&
               this.state.searchResults
                 .filter(b => b.shelf !== 'none')
