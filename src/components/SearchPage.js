@@ -83,27 +83,25 @@ class SearchPage extends Component {
           this.setState({
             searchResults,
             error: false,
-            // userSearch: '',
           });
         })
         .catch((err) => {
           this.setState({
             error: true,
             searchResults: [],
-            // userSearch: '',
           });
         });
     }
   };
 
-  assignBookShelf = (searchResults) => {
-    if (searchResults.error !== 'error') {
+  assignBookShelf = (results) => {
+    if (results.error !== 'error') {
       for (const book of this.props.books) {
-        for (const result of searchResults) {
+        for (const result of results) {
           if (book.id === result.id) {
-            result.shelf = book.shelf;
+            return result.shelf = book.shelf;
           } else {
-            result.shelf = 'none';
+            return result.shelf = 'none';
           }
         }
       }
@@ -129,7 +127,7 @@ class SearchPage extends Component {
             {this.state.error && <div>Your search returned no results</div>}
             {this.state.searchResults.length > 0 &&
               this.state.searchResults
-                .filter(b => b.shelf === 'none')
+                .filter(b => b.shelf !== 'none')
                 .map(b => (
                   <Book
                     key={b.id}
