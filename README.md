@@ -126,7 +126,7 @@ yarn test
 ```
 
 ### Continuous Integration
-It's _complete_ overkill for this project but I added Travis CI to the project. A commit pushed to `origin/master` triggers a build on [Travis](https://travis-ci.org/).
+It's _complete_ overkill for this project but I added Travis CI to the project. A commit pushed to `origin/<branch>` triggers a build on [Travis](https://travis-ci.org/).
 
 The `.travis.yml` file includes the CI build config. The `.nvmrc` file is used to specify the version of Node used in the project and for the CI build.
 
