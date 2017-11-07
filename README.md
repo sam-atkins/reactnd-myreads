@@ -2,6 +2,7 @@
 
 [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg)](https://github.com/prettier/prettier)
 [![tested with jest](https://img.shields.io/badge/tested_with-jest-99424f.svg)](https://github.com/facebook/jest)
+[![Build Status](https://travis-ci.org/cubiio/reactnd-myreads.svg?branch=master)](https://travis-ci.org/cubiio/reactnd-myreads)
 
 ## Description
 This is the first project for the [React Nanodegree](https://www.udacity.com/course/react-nanodegree--nd019).
@@ -16,6 +17,9 @@ This is the first project for the [React Nanodegree](https://www.udacity.com/cou
   - [Tests](#tests)
   - [Style Guide](#style-guide)
 - [Release](#release)
+  - [Build](#build)
+  - [Deploy](#deploy)
+  - [Demo](#demo)
 
 
 ## Getting started
@@ -120,6 +124,11 @@ The backend API uses a fixed set of cached search results and is limited to a pa
 yarn test
 ```
 
+#### CI
+It's _complete_ overkill for this project but I added Travis CI to the project. A commit pushed to `origin/master` with trigger a build on Travis.
+
+The `.travis.yml` file includes the config and the `.nvmrc` is used to specify the version of Node used in the project and for the build.
+
 ### Style Guide
 This repo uses [ESLint](https://eslint.org/) with [Prettier](https://github.com/prettier/prettier) formatting.
 
@@ -127,4 +136,19 @@ The ESLint config extends from AirBnB, with a few changes. Refer to the `.eslint
 
 ## Release
 
-This section will contain info on the final version.
+### Build
+
+```sh
+yarn build
+```
+
+### Deploy
+
+TODO
+* add details on deploying with `now`
+
+### Demo
+
+TODO
+* Add link to demo site.
+* add screenshots
