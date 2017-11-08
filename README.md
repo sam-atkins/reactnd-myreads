@@ -140,16 +140,29 @@ The ESLint config extends from AirBnB, with a few changes. Refer to the `.eslint
 ### Build
 
 ```sh
+# from the project root:
 yarn build
 ```
 
 ### Deploy
 
-TODO
-* add details on deploying with `now`
+The demo app is deployed with [Now](https://zeit.co/download). These are the instructions to deploy with `now`.
+
+```sh
+# from the project root:
+yarn build
+
+cd build
+
+now --name your-project-name
+
+# for example:
+now --name cubiio-myreads
+> Ready! https://cubiio-myreads-bwzdmafliu.now.sh (copied to clipboard) [6s]
+```
+
+Paste that URL into your browser when the build is complete, and you will see your deployed app.
 
 ### Demo
 
-TODO
-* Add link to demo site.
-* add screenshots
+The demo app is currently live [here](https://cubiio-myreads-bwzdmafliu.now.sh/).
