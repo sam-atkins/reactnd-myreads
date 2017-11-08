@@ -68,7 +68,7 @@ class SearchPage extends Component {
   state = {
     error: false,
     userSearch: '',
-    searchResults: [],
+    updatedSearchResults: [],
   };
 
   handleUserSearch = (e) => {
@@ -78,32 +78,34 @@ class SearchPage extends Component {
     } else {
       this.setState({ userSearch });
       BooksAPI.search(this.state.userSearch)
-        .then((searchResults) => {
-          this.assignBookShelf(searchResults);
+        .then((initialSearchResults) => {
+          const booksAndShelvesInState = new Map();
+          this.props.books.forEach((book) => {
+            booksAndShelvesInState.set(book.id, book.shelf);
+          });
+          const updatedSearchResults = initialSearchResults.map((result) => {
+            if (booksAndShelvesInState.has(result.id) === true) {
+              const shelf = booksAndShelvesInState.get(result.id);
+              return {
+                ...result,
+                shelf,
+              };
+            }
+            return {
+              ...result,
+              shelf: 'none',
+            };
+          });
           this.setState({
-            searchResults,
+            updatedSearchResults,
             error: false,
           });
         })
-        .catch((err) => {
+        .catch(() => {
           this.setState({
             error: true,
-            searchResults: [],
           });
         });
-    }
-  };
-
-  assignBookShelf = (results) => {
-    if (results.error !== 'error') {
-      for (const book of this.props.books) {
-        for (const result of results) {
-          if (book.id === result.id) {
-            return (result.shelf = book.shelf);
-          }
-          return (result.shelf = 'none');
-        }
-      }
     }
   };
 
@@ -129,28 +131,27 @@ class SearchPage extends Component {
                 search. Try one of these search terms instead:
                 <br />
                 <p>
-                'Android',
-                'Art', 'Artificial Intelligence', 'Astronomy', 'Austen',
-                'Baseball', 'Basketball', 'Bhagat', 'Biography', 'Brief',
-                'Business', 'Camus', 'Cervantes', 'Christie', 'Classics',
-                'Comics', 'Cook', 'Cricket', 'Cycling', 'Desai', 'Design',
-                'Development', 'Digital Marketing', 'Drama', 'Drawing', 'Dumas',
-                'Education', 'Everything', 'Fantasy', 'Film', 'Finance',
-                'First', 'Fitness', 'Football', 'Future', 'Games', 'Gandhi',
-                'Homer', 'Horror', 'Hugo', 'Ibsen', 'Journey', 'Kafka', 'King',
-                'Lahiri', 'Larsson', 'Learn', 'Literary Fiction', 'Make',
-                'Manage', 'Marquez', 'Money', 'Mystery', 'Negotiate',
-                'Painting', 'Philosophy', 'Photography', 'Poetry', 'Production',
-                'Programming', 'React', 'Redux', 'River', 'Robotics', 'Rowling',
-                'Satire', 'Science Fiction', 'Shakespeare', 'Singh', 'Swimming',
-                'Tale', 'Thrun', 'Time', 'Tolstoy', 'Travel', 'Ultimate',
-                'Virtual Reality', 'Web Development', 'iOS'
+                  'Android', 'Art', 'Artificial Intelligence', 'Astronomy',
+                  'Austen', 'Baseball', 'Basketball', 'Bhagat', 'Biography',
+                  'Brief', 'Business', 'Camus', 'Cervantes', 'Christie',
+                  'Classics', 'Comics', 'Cook', 'Cricket', 'Cycling', 'Desai',
+                  'Design', 'Development', 'Digital Marketing', 'Drama',
+                  'Drawing', 'Dumas', 'Education', 'Everything', 'Fantasy',
+                  'Film', 'Finance', 'First', 'Fitness', 'Football', 'Future',
+                  'Games', 'Gandhi', 'Homer', 'Horror', 'Hugo', 'Ibsen',
+                  'Journey', 'Kafka', 'King', 'Lahiri', 'Larsson', 'Learn',
+                  'Literary Fiction', 'Make', 'Manage', 'Marquez', 'Money',
+                  'Mystery', 'Negotiate', 'Painting', 'Philosophy',
+                  'Photography', 'Poetry', 'Production', 'Programming', 'React',
+                  'Redux', 'River', 'Robotics', 'Rowling', 'Satire', 'Science
+                  Fiction', 'Shakespeare', 'Singh', 'Swimming', 'Tale', 'Thrun',
+                  'Time', 'Tolstoy', 'Travel', 'Ultimate', 'Virtual Reality',
+                  'Web Development', 'iOS'
                 </p>
               </div>
             )}
-            {this.state.searchResults.length > 0 &&
-              this.state.searchResults
-                .filter(b => b.shelf !== 'none')
+            {this.state.updatedSearchResults.length > 0 &&
+              this.state.updatedSearchResults
                 .map(b => (
                   <Book
                     key={b.id}
