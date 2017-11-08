@@ -91,7 +91,7 @@ const Book = (props) => {
           />
           <StyledBookShelfChanger>
             <StyledBookShelfChangerSelect
-              value={shelf}
+              value={shelf || 'none'}
               onChange={handleMoveBook}
             >
               <option disabled>Move to...</option>
