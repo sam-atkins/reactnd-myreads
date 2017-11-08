@@ -169,8 +169,6 @@ The demo app is currently live [here](https://cubiio-myreads-rleglhnrla.now.sh/)
 
 #### Screenshots
 
-**Main Page**
 ![Main Page](./docs/myreads.png)
 
-**Search Page**
 ![Search Page](./docs/search.png)
