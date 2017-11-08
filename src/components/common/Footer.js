@@ -1,6 +1,16 @@
 import React from 'react';
 import styled from 'styled-components';
 
+const Footer = () => (
+  <FooterWrapper>
+    <FooterText>
+      Built with ♥ by <a href="https://github.com/cubiio">Cubiio</a>. View
+      source code on{' '}
+      <a href="https://github.com/cubiio/reactnd-myreads">Github</a>.
+    </FooterText>
+  </FooterWrapper>
+);
+
 const FooterWrapper = styled.div`
   display: flex;
   justify-content: center;
@@ -13,15 +23,5 @@ const FooterWrapper = styled.div`
 const FooterText = styled.div`
   font-size: 0.8em;
 `;
-
-const Footer = () => (
-  <FooterWrapper>
-    <FooterText>
-      Built with ♥ by <a href="https://github.com/cubiio">Cubiio</a>. View
-      source code on{' '}
-      <a href="https://github.com/cubiio/reactnd-myreads">Github</a>.
-    </FooterText>
-  </FooterWrapper>
-);
 
 export default Footer;

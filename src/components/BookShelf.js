@@ -5,6 +5,46 @@ import styled from 'styled-components';
 import Book from './Book';
 import Icon from '../icons/icons';
 
+const BookShelf = props => (
+  <ListBooksContent>
+    {props.shelves.map(shelf => (
+      <StyledBookShelf key={shelf.id}>
+        <BookShelfTitle>{shelf.shelfName}</BookShelfTitle>
+        <BookShelfBooks>
+          <BooksGridOL>
+            {props.books
+              .filter(b => b.shelf === shelf.id)
+              .map(b => (
+                <Book
+                  key={b.id}
+                  book={b}
+                  bookImgUrl={
+                    b.imageLinks !== undefined
+                      ? b.imageLinks.smallThumbnail
+                      : ''
+                  }
+                  onUpdateBook={props.onUpdateBook}
+                />
+              ))}
+          </BooksGridOL>
+        </BookShelfBooks>
+      </StyledBookShelf>
+    ))}
+    <OpenSearch>
+      <OpenSearchLink to="/search">Add a book</OpenSearchLink>
+    </OpenSearch>
+  </ListBooksContent>
+);
+
+BookShelf.propTypes = {
+  shelves: PropTypes.array.isRequired,
+  books: PropTypes.array,
+};
+
+BookShelf.defaultProps = {
+  books: [],
+};
+
 const ListBooksContent = styled.div`
   flex: 1;
   padding: 0 0 80px;
@@ -55,45 +95,5 @@ const OpenSearchLink = styled(Link)`
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
   font-size: 0;
 `;
-
-const BookShelf = props => (
-  <ListBooksContent>
-    {props.shelves.map(shelf => (
-      <StyledBookShelf key={shelf.id}>
-        <BookShelfTitle>{shelf.shelfName}</BookShelfTitle>
-        <BookShelfBooks>
-          <BooksGridOL>
-            {props.books
-              .filter(b => b.shelf === shelf.id)
-              .map(b => (
-                <Book
-                  key={b.id}
-                  book={b}
-                  bookImgUrl={
-                    b.imageLinks !== undefined
-                      ? b.imageLinks.smallThumbnail
-                      : ''
-                  }
-                  onUpdateBook={props.onUpdateBook}
-                />
-              ))}
-          </BooksGridOL>
-        </BookShelfBooks>
-      </StyledBookShelf>
-    ))}
-    <OpenSearch>
-      <OpenSearchLink to="/search">Add a book</OpenSearchLink>
-    </OpenSearch>
-  </ListBooksContent>
-);
-
-BookShelf.propTypes = {
-  shelves: PropTypes.array.isRequired,
-  books: PropTypes.array,
-};
-
-BookShelf.defaultProps = {
-  books: [],
-};
 
 export default BookShelf;

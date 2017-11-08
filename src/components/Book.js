@@ -3,6 +3,63 @@ import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import Icon from '../icons/icons';
 
+const Book = (props) => {
+  const { authors, shelf, title } = props.book;
+  const { bookImgUrl, onUpdateBook } = props;
+
+  const handleMoveBook = (e) => {
+    const selectedBook = props.book;
+    const selectedShelf = e.target.value;
+    onUpdateBook(selectedBook, selectedShelf);
+  };
+
+  const formattedAuthorStr = (writers) => {
+    if (writers === undefined) {
+      return writers;
+    }
+    return writers.length >= 2 ? writers.join(', ') : writers;
+  };
+
+  return (
+    <BooksGridLI>
+      <StyledBook>
+        <StyledBookTop>
+          <StyledBookCover
+            style={{
+              backgroundImage: `url(${bookImgUrl})`,
+            }}
+          />
+          <StyledBookShelfChanger>
+            <StyledBookShelfChangerSelect
+              value={shelf || 'none'}
+              onChange={handleMoveBook}
+            >
+              <option disabled>Move to...</option>
+              <option value="currentlyReading">Currently Reading</option>
+              <option value="wantToRead">Want to Read</option>
+              <option value="read">Read</option>
+              <option value="none">None</option>
+            </StyledBookShelfChangerSelect>
+          </StyledBookShelfChanger>
+        </StyledBookTop>
+        <StyledBookTitle>{title}</StyledBookTitle>
+        <StyledBookAuthors>{formattedAuthorStr(authors)}</StyledBookAuthors>
+      </StyledBook>
+    </BooksGridLI>
+  );
+};
+
+Book.propTypes = {
+  book: PropTypes.object,
+  bookImgUrl: PropTypes.string,
+  onUpdateBook: PropTypes.func.isRequired,
+};
+
+Book.defaultProps = {
+  book: {},
+  bookImgUrl: '',
+};
+
 const BooksGridLI = styled.li`
   padding: 10px 15px;
   text-align: left;
@@ -60,62 +117,5 @@ const StyledBookTitle = StyledBookInfo.extend`
 const StyledBookAuthors = StyledBookInfo.extend`
   color: #999;
 `;
-
-const Book = (props) => {
-  const { authors, shelf, title } = props.book;
-  const { bookImgUrl, onUpdateBook } = props;
-
-  const handleMoveBook = (e) => {
-    const selectedBook = props.book;
-    const selectedShelf = e.target.value;
-    onUpdateBook(selectedBook, selectedShelf);
-  };
-
-  const formattedAuthorStr = (writers) => {
-    if (writers === undefined) {
-      return writers;
-    }
-    return writers.length >= 2 ? writers.join(', ') : writers;
-  };
-
-  return (
-    <BooksGridLI>
-      <StyledBook>
-        <StyledBookTop>
-          <StyledBookCover
-            style={{
-              backgroundImage: `url(${bookImgUrl})`,
-            }}
-          />
-          <StyledBookShelfChanger>
-            <StyledBookShelfChangerSelect
-              value={shelf || 'none'}
-              onChange={handleMoveBook}
-            >
-              <option disabled>Move to...</option>
-              <option value="currentlyReading">Currently Reading</option>
-              <option value="wantToRead">Want to Read</option>
-              <option value="read">Read</option>
-              <option value="none">None</option>
-            </StyledBookShelfChangerSelect>
-          </StyledBookShelfChanger>
-        </StyledBookTop>
-        <StyledBookTitle>{title}</StyledBookTitle>
-        <StyledBookAuthors>{formattedAuthorStr(authors)}</StyledBookAuthors>
-      </StyledBook>
-    </BooksGridLI>
-  );
-};
-
-Book.propTypes = {
-  book: PropTypes.object,
-  bookImgUrl: PropTypes.string,
-  onUpdateBook: PropTypes.func.isRequired,
-};
-
-Book.defaultProps = {
-  book: {},
-  bookImgUrl: '',
-};
 
 export default Book;
