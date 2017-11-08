@@ -64,6 +64,14 @@ const CloseSearchLink = styled(Link)`
   font-size: 0;
 `;
 
+const SearchError = styled.div`
+  text-align: center;
+`;
+
+const DisplaySearchTerms = styled.p`
+  font-family: monospace;
+`;
+
 class SearchPage extends Component {
   state = {
     error: false,
@@ -126,39 +134,34 @@ class SearchPage extends Component {
         <SearchBooksResults>
           <BooksGridOL>
             {this.state.error && (
-              <div>
+              <SearchError>
                 Your search returned no results. This demo app has limited
                 search. Try one of these search terms instead:
-                <br />
-                <p>
-                  'Android', 'Art', 'Artificial Intelligence', 'Astronomy',
-                  'Austen', 'Baseball', 'Basketball', 'Bhagat', 'Biography',
-                  'Brief', 'Business', 'Camus', 'Cervantes', 'Christie',
-                  'Classics', 'Comics', 'Cook', 'Cricket', 'Cycling', 'Desai',
-                  'Design', 'Development', 'Digital Marketing', 'Drama',
-                  'Drawing', 'Dumas', 'Education', 'Everything', 'Fantasy',
-                  'Film', 'Finance', 'First', 'Fitness', 'Football', 'Future',
-                  'Games', 'Gandhi', 'Homer', 'Horror', 'Hugo', 'Ibsen',
-                  'Journey', 'Kafka', 'King', 'Lahiri', 'Larsson', 'Learn',
-                  'Literary Fiction', 'Make', 'Manage', 'Marquez', 'Money',
-                  'Mystery', 'Negotiate', 'Painting', 'Philosophy',
-                  'Photography', 'Poetry', 'Production', 'Programming', 'React',
-                  'Redux', 'River', 'Robotics', 'Rowling', 'Satire', 'Science
-                  Fiction', 'Shakespeare', 'Singh', 'Swimming', 'Tale', 'Thrun',
-                  'Time', 'Tolstoy', 'Travel', 'Ultimate', 'Virtual Reality',
-                  'Web Development', 'iOS'
-                </p>
-              </div>
+                <DisplaySearchTerms>
+                  Android, Art, Artificial Intelligence, Astronomy, Austen,
+                  Baseball, Basketball, Bhagat, Biography, Brief, Business,
+                  Camus, Cervantes, Christie, Classics, Comics, Cook, Cricket,
+                  Cycling, Desai, Design, Development, Digital Marketing, Drama,
+                  Drawing, Dumas, Education, Everything, Fantasy, Film, Finance,
+                  First, Fitness, Football, Future, Games, Gandhi, Homer,
+                  Horror, Hugo, Ibsen, Journey, Kafka, King, Lahiri, Larsson,
+                  Learn, Literary Fiction, Make, Manage, Marquez, Money,
+                  Mystery, Negotiate, Painting, Philosophy, Photography, Poetry,
+                  Production, Programming, React, Redux, River, Robotics,
+                  Rowling, Satire, Science Fiction, Shakespeare, Singh,
+                  Swimming, Tale, Thrun, Time, Tolstoy, Travel, Ultimate,
+                  Virtual Reality, Web Development, iOS
+                </DisplaySearchTerms>
+              </SearchError>
             )}
             {this.state.updatedSearchResults.length > 0 &&
-              this.state.updatedSearchResults
-                .map(b => (
-                  <Book
-                    key={b.id}
-                    book={b}
-                    onUpdateBook={this.props.onUpdateBook}
-                  />
-                ))}
+              this.state.updatedSearchResults.map(b => (
+                <Book
+                  key={b.id}
+                  book={b}
+                  onUpdateBook={this.props.onUpdateBook}
+                />
+              ))}
           </BooksGridOL>
         </SearchBooksResults>
         <CloseSearch>
