@@ -62,10 +62,8 @@ const StyledBookAuthors = StyledBookInfo.extend`
 `;
 
 const Book = (props) => {
-  const {
-    authors, imageLinks, shelf, title,
-  } = props.book;
-  const { onUpdateBook } = props;
+  const { authors, shelf, title } = props.book;
+  const { bookImgUrl, onUpdateBook } = props;
 
   const handleMoveBook = (e) => {
     const selectedBook = props.book;
@@ -86,7 +84,7 @@ const Book = (props) => {
         <StyledBookTop>
           <StyledBookCover
             style={{
-              backgroundImage: `url(${imageLinks.smallThumbnail})`,
+              backgroundImage: `url(${bookImgUrl})`,
             }}
           />
           <StyledBookShelfChanger>
@@ -103,9 +101,7 @@ const Book = (props) => {
           </StyledBookShelfChanger>
         </StyledBookTop>
         <StyledBookTitle>{title}</StyledBookTitle>
-        <StyledBookAuthors>
-          {formattedAuthorStr(authors)}
-        </StyledBookAuthors>
+        <StyledBookAuthors>{formattedAuthorStr(authors)}</StyledBookAuthors>
       </StyledBook>
     </BooksGridLI>
   );
@@ -113,11 +109,13 @@ const Book = (props) => {
 
 Book.propTypes = {
   book: PropTypes.object,
+  bookImgUrl: PropTypes.string,
   onUpdateBook: PropTypes.func.isRequired,
 };
 
 Book.defaultProps = {
   book: {},
+  bookImgUrl: '',
 };
 
 export default Book;

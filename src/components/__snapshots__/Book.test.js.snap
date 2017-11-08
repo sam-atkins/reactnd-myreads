@@ -14,7 +14,7 @@ exports[`Book renders correctly 1`] = `
         className="sc-bxivhb jVTYef"
         style={
           Object {
-            "backgroundImage": "url(someUrl)",
+            "backgroundImage": "url()",
           }
         }
       />

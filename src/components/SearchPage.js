@@ -159,6 +159,11 @@ class SearchPage extends Component {
                 <Book
                   key={b.id}
                   book={b}
+                  bookImgUrl={
+                    b.imageLinks !== undefined
+                      ? b.imageLinks.smallThumbnail
+                      : ''
+                  }
                   onUpdateBook={this.props.onUpdateBook}
                 />
               ))}

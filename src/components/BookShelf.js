@@ -69,6 +69,11 @@ const BookShelf = props => (
                 <Book
                   key={b.id}
                   book={b}
+                  bookImgUrl={
+                    b.imageLinks !== undefined
+                      ? b.imageLinks.smallThumbnail
+                      : ''
+                  }
                   onUpdateBook={props.onUpdateBook}
                 />
               ))}
