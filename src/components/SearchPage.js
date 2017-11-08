@@ -79,45 +79,45 @@ class SearchPage extends Component {
     updatedSearchResults: [],
   };
 
-  handleUserSearch = (e) => {
-    const userSearch = e.target.value;
-    if (userSearch === '' || userSearch === undefined) {
-      this.setState({ userSearch: '' });
-    } else {
-      this.setState({ userSearch });
-      BooksAPI.search(this.state.userSearch)
-        .then((initialSearchResults) => {
-          const booksAndShelvesInState = new Map();
-          this.props.books.forEach((book) => {
-            booksAndShelvesInState.set(book.id, book.shelf);
-          });
-          const updatedSearchResults = initialSearchResults.map((result) => {
-            if (booksAndShelvesInState.has(result.id) === true) {
-              const shelf = booksAndShelvesInState.get(result.id);
+  render() {
+    const booksAndShelvesInState = new Map();
+    this.props.books.forEach((book) => {
+      booksAndShelvesInState.set(book.id, book.shelf);
+    });
+
+    const handleUserSearch = (e) => {
+      const userSearch = e.target.value;
+      if (userSearch === '' || userSearch === undefined) {
+        this.setState({ userSearch: '' });
+      } else {
+        this.setState({ userSearch });
+        BooksAPI.search(this.state.userSearch)
+          .then((initialSearchResults) => {
+            const updatedSearchResults = initialSearchResults.map((result) => {
+              if (booksAndShelvesInState.has(result.id) === true) {
+                const shelf = booksAndShelvesInState.get(result.id);
+                return {
+                  ...result,
+                  shelf,
+                };
+              }
               return {
                 ...result,
-                shelf,
               };
-            }
-            return {
-              ...result,
-              shelf: 'none',
-            };
+            });
+            this.setState({
+              updatedSearchResults,
+              error: false,
+            });
+          })
+          .catch(() => {
+            this.setState({
+              error: true,
+            });
           });
-          this.setState({
-            updatedSearchResults,
-            error: false,
-          });
-        })
-        .catch(() => {
-          this.setState({
-            error: true,
-          });
-        });
-    }
-  };
+      }
+    };
 
-  render() {
     return (
       <div className="search-books">
         <SearchBooksBar>
@@ -125,7 +125,7 @@ class SearchPage extends Component {
             <SearchBooksBarInput
               minLength={2}
               debounceTimeout={300}
-              onChange={e => this.handleUserSearch(e)}
+              onChange={e => handleUserSearch(e)}
               placeholder="Search by title or author"
               value={this.state.userSearch}
             />
