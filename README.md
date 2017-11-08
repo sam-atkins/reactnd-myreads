@@ -158,11 +158,11 @@ now --name your-project-name
 
 # for example:
 now --name cubiio-myreads
-> Ready! https://cubiio-myreads-bwzdmafliu.now.sh (copied to clipboard) [6s]
+> Ready! https://cubiio-myreads-rleglhnrla.now.sh/ (copied to clipboard) [6s]
 ```
 
 Paste that URL into your browser when the build is complete, and you will see your deployed app.
 
 ### Demo
 
-The demo app is currently live [here](https://cubiio-myreads-bwzdmafliu.now.sh/).
+The demo app is currently live [here](https://cubiio-myreads-rleglhnrla.now.sh/).
