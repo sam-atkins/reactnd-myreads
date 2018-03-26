@@ -2,8 +2,8 @@ import * as React from 'react';
 import { Route } from 'react-router-dom';
 import styled from 'styled-components';
 import * as BooksAPI from './utils/BooksAPI';
-import { Header, Footer } from './components/common';
-import { BookShelf, SearchPage } from './components';
+import { Header, Footer } from './components';
+import { BookShelf, SearchPage } from './containers';
 import StateProps from './interfaces/stateProps';
 import BookObject from './interfaces/bookObject';
 
@@ -19,7 +19,7 @@ const StyledApp = styled.div`
 class BooksApp extends React.Component {
   state: StateProps = {
     books: [],
-    shelves: []
+    shelves: [],
   };
 
   componentDidMount() {
