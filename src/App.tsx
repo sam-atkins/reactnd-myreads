@@ -3,7 +3,8 @@ import { Route } from 'react-router-dom';
 import styled from 'styled-components';
 import * as BooksAPI from './utils/BooksAPI';
 import { Header, Footer } from './components';
-import { BookShelf, SearchPage } from './containers';
+import BookShelf from './containers/BookShelf';
+import SearchPage from './containers/SearchPage';
 import { StateProps } from './interfaces/stateProps';
 import BookObject from './interfaces/bookObject';
 
@@ -71,7 +72,7 @@ class BooksApp extends React.Component {
           path="/search"
           render={({ history }) => (
             <SearchPage
-              shelves={this.state.shelves}
+              // shelves={this.state.shelves}
               books={this.state.books}
               onUpdateBook={(book: BookObject, shelf: string) => {
                 this.updateBook(book, shelf);

@@ -14,6 +14,14 @@ export interface BookShelfCompProps extends StateProps {
   onUpdateBook(book: BookProps, shelf: string): void;
 }
 
+export interface SearchPageCompProps extends StateProps, BookShelfCompProps {
+  onSelectSearchPage(): void;
+}
+
+export interface BooksState {
+  books: BookObject[];
+}
+
 export interface BookProps {
   authors: string[];
   shelf: string;
