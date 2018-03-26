@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import * as BooksAPI from './utils/BooksAPI';
 import { Header, Footer } from './components';
 import { BookShelf, SearchPage } from './containers';
-import StateProps from './interfaces/stateProps';
+import { StateProps } from './interfaces/stateProps';
 import BookObject from './interfaces/bookObject';
 
 const StyledApp = styled.div`
@@ -19,7 +19,20 @@ const StyledApp = styled.div`
 class BooksApp extends React.Component {
   state: StateProps = {
     books: [],
-    shelves: [],
+    shelves: [
+      {
+        id: 'currentlyReading',
+        shelfName: 'Currently Reading',
+      },
+      {
+        id: 'wantToRead',
+        shelfName: 'Want to Read',
+      },
+      {
+        id: 'read',
+        shelfName: 'Read',
+      },
+    ],
   };
 
   componentDidMount() {
@@ -37,20 +50,9 @@ class BooksApp extends React.Component {
   };
 
   render() {
-    const shelves = [
-      {
-        id: 'currentlyReading',
-        shelfName: 'Currently Reading',
-      },
-      {
-        id: 'wantToRead',
-        shelfName: 'Want to Read',
-      },
-      {
-        id: 'read',
-        shelfName: 'Read',
-      },
-    ];
+    // const shelves: Shelves = [
+
+    // ];
 
     const exact: boolean = true;
 
@@ -62,8 +64,8 @@ class BooksApp extends React.Component {
           path="/"
           render={() => (
             <BookShelf
-              shelves={shelves}
               books={this.state.books}
+              shelves={this.state.shelves}
               onUpdateBook={(book: BookObject, shelf: string) => {
                 this.updateBook(book, shelf);
               }}

@@ -3,7 +3,7 @@ import * as Styles from './Book.styles';
 import {
   BookComponentProps,
   MoveBookEvent,
-} from '../../interfaces/bookComponent';
+} from '../../interfaces/stateProps';
 
 const Book = (props: BookComponentProps) => {
   const { authors, shelf, title } = props.book;

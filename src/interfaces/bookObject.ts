@@ -2,7 +2,7 @@
  * The complete book object available from the API
  */
 export default interface BookObject {
-  allowAnonLogging: boolean;
+  allowAnonLogging?: boolean;
   authors: string[];
   averageRating: number;
   canonicalVolumeLink: string;
