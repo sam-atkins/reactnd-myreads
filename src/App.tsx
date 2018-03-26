@@ -50,12 +50,7 @@ class BooksApp extends React.Component {
   };
 
   render() {
-    // const shelves: Shelves = [
-
-    // ];
-
     const exact: boolean = true;
-
     return (
       <StyledApp>
         <Header />
