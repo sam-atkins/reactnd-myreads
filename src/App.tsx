@@ -4,7 +4,8 @@ import styled from 'styled-components';
 import * as BooksAPI from './utils/BooksAPI';
 import { Header, Footer } from './components/common';
 import { BookShelf, SearchPage } from './components';
-import { StateProps } from './interfaces/stateProps';
+import StateProps from './interfaces/stateProps';
+import BookObject from './interfaces/bookObject';
 
 const StyledApp = styled.div`
   min-height: 100vh;
@@ -16,7 +17,10 @@ const StyledApp = styled.div`
 `;
 
 class BooksApp extends React.Component {
-  state: StateProps = {};
+  state: StateProps = {
+    books: [],
+    shelves: []
+  };
 
   componentDidMount() {
     BooksAPI.getAll().then(books => {
@@ -24,7 +28,7 @@ class BooksApp extends React.Component {
     });
   }
 
-  updateBook = (book, shelf) => {
+  updateBook = (book: BookObject, shelf: string) => {
     BooksAPI.update(book, shelf).then(() => {
       BooksAPI.getAll().then(books => {
         this.setState({ books });
@@ -60,8 +64,8 @@ class BooksApp extends React.Component {
             <BookShelf
               shelves={shelves}
               books={this.state.books}
-              onUpdateBook={(shelf, book) => {
-                this.updateBook(shelf, book);
+              onUpdateBook={(book: BookObject, shelf: string) => {
+                this.updateBook(book, shelf);
               }}
             />
           )}
@@ -72,8 +76,8 @@ class BooksApp extends React.Component {
             <SearchPage
               shelves={this.state.shelves}
               books={this.state.books}
-              onUpdateBook={(shelf, book) => {
-                this.updateBook(shelf, book);
+              onUpdateBook={(book: BookObject, shelf: string) => {
+                this.updateBook(book, shelf);
               }}
               onSelectSearchPage={() => {
                 history.push('/');
