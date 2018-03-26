@@ -1,3 +1,6 @@
+/**
+ * The complete book object available from the API
+ */
 export default interface BookObject {
   allowAnonLogging: boolean;
   authors: string[];
@@ -41,4 +44,4 @@ export default interface BookObject {
   shelf: string;
   subtitle: string;
   title: string;
-}
+};
