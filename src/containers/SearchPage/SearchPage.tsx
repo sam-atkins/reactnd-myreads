@@ -69,8 +69,7 @@ class SearchPage extends React.Component<SearchPageProps, SearchPageState> {
           });
       }
     };
-    // TODO resolve `placeholder` compile error
-    // const placeholder: string = 'Search by title or author';
+
     return (
       <div className="search-books">
         <Styles.SearchBooksBar>
@@ -79,7 +78,7 @@ class SearchPage extends React.Component<SearchPageProps, SearchPageState> {
               minLength={2}
               debounceTimeout={300}
               onChange={e => handleUserSearch(e)}
-              // placeholder="Search by title or author"
+              placeholder="Search by title or author"
               value={this.state.userSearch}
             />
           </Styles.SearchBooksInputForm>
