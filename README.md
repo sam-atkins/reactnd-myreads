@@ -1,5 +1,6 @@
 # React Project: MyReads
 
+[![TypeScript](https://badges.frapsoft.com/typescript/code/typescript.png?v=101)](https://github.com/ellerbrock/typescript-badges/)
 [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg)](https://github.com/prettier/prettier)
 [![tested with jest](https://img.shields.io/badge/tested_with-jest-99424f.svg)](https://github.com/facebook/jest)
 [![Build Status](https://travis-ci.org/cubiio/reactnd-myreads.svg?branch=master)](https://travis-ci.org/cubiio/reactnd-myreads)
