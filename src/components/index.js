@@ -1,3 +1,2 @@
-export { default as Book } from './Book';
-export { default as BookShelf } from './BookShelf';
-export { default as SearchPage } from './SearchPage';
+export { default as Header } from './Header';
+export { default as Footer } from './Footer';

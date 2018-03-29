@@ -1,11 +1,5 @@
-import React from 'react';
+import * as React from 'react';
 import styled from 'styled-components';
-
-const Header = () => (
-  <StyledListBooksTitle>
-    <StyledListBooksHeader>MyReads</StyledListBooksHeader>
-  </StyledListBooksTitle>
-);
 
 const StyledListBooksTitle = styled.div`
   padding: 10px 0;
@@ -18,5 +12,11 @@ const StyledListBooksHeader = styled.h1`
   margin: 0;
   color: white;
 `;
+
+const Header = () => (
+  <StyledListBooksTitle>
+    <StyledListBooksHeader>MyReads</StyledListBooksHeader>
+  </StyledListBooksTitle>
+);
 
 export default Header;

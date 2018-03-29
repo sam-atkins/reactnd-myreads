@@ -21,14 +21,16 @@ describe('BookShelf', () => {
         shelfName: 'Read',
       },
     ];
+    const books = [];
     const tree = renderer
       .create(
-      <MemoryRouter>
-        <BookShelf shelves={shelves}>
-          <Link to="/search" />
-        </BookShelf>
-      </MemoryRouter>
-      ).toJSON();
+        <MemoryRouter>
+          <BookShelf shelves={shelves} books={books}>
+            <Link to="/search" />
+          </BookShelf>
+        </MemoryRouter>,
+      )
+      .toJSON();
     expect(tree).toMatchSnapshot();
   });
 });
